@@ -1,0 +1,31 @@
+{
+  "name": "learn-namasthe-react",
+  "version": "1.0.0",
+  "description": "This is to learn react by Mithun",
+  "scripts": {
+    "start":"parcel index.html",
+    "build":"parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mithun88R/learn-namasthe-react.git"
+  },
+  "author": "Mithun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mithun88R/learn-namasthe-react/issues"
+  },
+  "homepage": "https://github.com/Mithun88R/learn-namasthe-react#readme",
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "browserslist": [   
+        "last 2 versions"
+  ]
+
+}
