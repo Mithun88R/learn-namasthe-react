@@ -127,16 +127,18 @@ React Functional Component Render we give
 ===== ========== ========= ======
 root.render(<HeadingComponent />);
 
-Component Composition:
-========= ============
+# Component Composition:
+
+= ========= ============
 putting component inside another component is call component Composition.
 
 Config driven UI
 
-Folder Utils means utilities that are called accross the projects. in Some projects it named as Common/config
+# Folder Utils means utilities that are called accross the projects. in Some projects it named as Common/config
+
 ============ ==============
 
-There are Two Types of Exports and Imports
+# There are Two Types of Exports and Imports
 
 => Default Export - A file in which we need to export only one const or component means then we use Default Export. Only one Default Export can be called in a file.
 
@@ -163,7 +165,8 @@ React HOOKS.
 
 whenever a state varianble get updated the react rerender the component
 
-Reconciliation Algoritham -> also know as (React Fiber)
+# Reconciliation Algoritham -> also know as (React Fiber)
+
 ============== ==========
 
 React Fiber algoritham came In React 16
@@ -172,3 +175,105 @@ React Fiber algoritham came In React 16
 
 React is doing efficiant DOM Manipulation.
 It has a virtual DOM. It has a Diff Algoritham which is very efficient and it can do efficient DOM manipulation.
+
+Monolith Architechure
+
+micro services architecture
+
+useEffect()--->
+
+Syntax: useEffect(()=>{},[]) in useEffect we pass two arguments one is callback function and second is its dependencies.
+When the call back function is called.
+
+the callback function is called after the component renders
+
+# Shimmer UI
+
+-> creates a fake dashboad or design so that till the rendering of component it creates a dummy dashboard.
+
+whenever state variable update, react triggers a reconciliation cycle (re-render the component.)
+
+# useEffect Concepts
+
+========= =======
+==> No Dependency
+If we didnt give the dependency array in useEffect Hook. whenever the component renders then the useEffect is called
+syntax: useEffect(()=>{})
+
+==> Empty Dependency Array
+
+If we have an empty dependency array in useEffect Hook then it will be called only once after initial render. after that it wont get called. it will get called only once.
+syntax: useEffect(()=>{},[])
+
+==> Dependency Array
+
+IF we have a dependency array i.e., for example we have a local state variable inside the dependency array then whenever the value of the state variable changes at that time the useEffect Hook is been called.
+
+# UseState
+
+It is used to create local state variables inside functional components
+
+# React Router Concepts
+
+npm install react-router-dom
+
+now we use Router in App.js
+
+for creating Router we import createBrowserRouter from 'react-router-dom'
+
+syntax:
+
+const appRouter = createBrowserRouter([
+{
+path:'/'
+element:<AppLayout />
+errorElement:<someErrorPage />
+},
+{
+path:'/aboutUs',
+element:<AboutUs />
+}
+])
+
+Now we need to import RouterProvider from 'react-router-dom'
+
+as we all do root.render(<RouterProvider router={appRouter} />) initially we provided root.render(<AppLayout />)
+
+# import {useRouteError} from 'react-router-dom'; This is an HOOK provided by react router dom which gived message in detailed object.
+
+# Syntax:
+
+const err = useRouteError();
+
+# Children Route
+
+now how to use children route
+
+syntax:
+
+children:[
+{
+path:"/about",
+element:<AboutUs />
+},{
+path:"/contactus",
+element:<ContactUs>
+}]
+
+# Outlet
+
+Inorder to Bind The Child Router component we use Outlet import from 'react-router-dom'
+<Outlet /> which binds the child router components
+
+# Link
+
+we import link from react-router-dom'
+
+Syntax:
+
+<Link to="/about"> About Us </Link>
+
+# Two types of Routing In Web Apps
+
+-- Client Side Routing
+-- Server Side Routing
