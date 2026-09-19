@@ -277,3 +277,7 @@ Syntax:
 
 -- Client Side Routing
 -- Server Side Routing
+
+# Hooks Definition
+
+A Hook is just a utility function, or HOOK is like a kind of utility functions.

@@ -1,31 +1,16 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
-import { RESTAURANT_MENU_API } from "../utils/constants";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [restaurantMenuData, setRestaurantMenuData] = useState([]);
   const { restaurantId } = useParams();
 
-  useEffect(() => {
-    fetchRestaurantMenuData();
-    // Fetch restaurant menu data based on the restaurant ID from the URL
-  }, []);
+  const restaurantMenuData = useRestaurantMenu(restaurantId);
 
-  const fetchRestaurantMenuData = async () => {
-    const menuData = await fetch(
-      RESTAURANT_MENU_API + restaurantId, // Replace with the actual API endpoint
-    );
-    // console.log("Restaurant Menu Data Response:", menuData);
+  console.log("Response Restaurant Menu Data:", restaurantMenuData);
 
-    const menuDataJson = await menuData.json();
-    // console.log("Restaurant Menu Data:", menuDataJson);
-    setRestaurantMenuData(menuDataJson);
-    // You can set the fetched data to state and render it in the component
-  };
-
-  if (restaurantMenuData.length === 0) return <Shimmer />;
+  if (restaurantMenuData === null) return <Shimmer />;
 
   const { name, locality, costForTwoMessage, cuisines, avgRating } =
     restaurantMenuData?.data?.cards[2]?.card?.card?.info;
