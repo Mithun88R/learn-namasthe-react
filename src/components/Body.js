@@ -5,12 +5,15 @@ import Shimmer from "./Shimmer";
 import { RESTAURANT_LIST_API } from "../utils/constants";
 
 import { useState, useEffect } from "react";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 export const Body = () => {
   const [restaurantLists, setRestaurantLists] = useState([]);
   const [filteredRestaurantLists, setFilteredRestaurantLists] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+  const onlineStatus = useOnlineStatus();
+  console.log(onlineStatus);
 
   useEffect(() => {
     fetchData();
@@ -38,20 +41,30 @@ export const Body = () => {
   };
 
   console.log("restaurantLists", restaurantLists);
+
+  if (!onlineStatus) {
+    return (
+      <h1 className="text-red-500 text-center mt-10 ">
+        {" "}
+        You are offline. Please check your internet connection.{" "}
+      </h1>
+    );
+  }
+
   return restaurantLists.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="search-container">
+      <div className="m-2 p-2 items-center flex justify-center">
         <input
           type="text"
-          className="search-input"
+          className="border m-4 py-0.4 border-solid border-black w-55"
           placeholder="Search..."
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
         <button
-          className="search-btn"
+          className="px-3 py-0.5 m-2 bg-gray-400 cursor-pointer hover:bg-gray-200 rounded-full"
           onClick={() => {
             setFilteredRestaurantLists(
               restaurantLists.filter((restaurant) =>
@@ -64,10 +77,8 @@ export const Body = () => {
         >
           Search
         </button>
-      </div>
-      <div className="filter-container">
         <button
-          className="filter-btn"
+          className="px-3 py-0.5 m-2 bg-gray-400  cursor-pointer hover:bg-gray-200 rounded-full"
           onClick={() => {
             setFilteredRestaurantLists(
               restaurantLists.filter(
@@ -79,7 +90,7 @@ export const Body = () => {
           Top Rated Restaurants
         </button>
       </div>
-      <div className="restaurants-list">
+      <div className="flex flex-row flex-wrap ">
         {filteredRestaurantLists.map((restaurant) => (
           <Link
             to={`/restaurants/${restaurant.info.id}`}

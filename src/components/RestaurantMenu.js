@@ -23,13 +23,13 @@ const RestaurantMenu = () => {
   // You can use the restaurant ID from the URL to fetch specific data
 
   return (
-    <div className="restaurant-menu">
-      <h1>{name}</h1>
+    <div className="p-5 m-5">
+      <h1 className="font-black text-2xl ">{name}</h1>
       <p>{cuisines?.join(", ")}</p>
       <p>{locality}</p>
       <p>Cost for Two: {costForTwoMessage}</p>
       <p>Rating: {avgRating}</p>
-      <h2>Restaurant Menu</h2>
+      <h2 className="font-bold text-lg">Restaurant Menu</h2>
       <ul>
         {itemCards?.map((item) => (
           <li key={item?.card?.info?.id}>
