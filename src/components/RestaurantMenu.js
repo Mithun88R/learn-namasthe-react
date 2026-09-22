@@ -2,6 +2,7 @@ import React from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { restaurantId } = useParams();
@@ -18,6 +19,20 @@ const RestaurantMenu = () => {
     restaurantMenuData?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR
       ?.cards[1]?.card?.card;
 
+  // console.log(
+  //   restaurantMenuData?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR
+  //     ?.cards,
+  // );
+
+  const categoryItemCards =
+    restaurantMenuData?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (category) =>
+        category?.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory",
+    );
+
+  //console.log("category", categoryItemCards);
+
   // Assuming the restaurant ID is available in the fetched data
   // Fetch restaurant menu data from an API or database
   // You can use the restaurant ID from the URL to fetch specific data
@@ -30,7 +45,18 @@ const RestaurantMenu = () => {
       <p>Cost for Two: {costForTwoMessage}</p>
       <p>Rating: {avgRating}</p>
       <h2 className="font-bold text-lg">Restaurant Menu</h2>
-      <ul>
+      {/*  category Accordian building. */}
+
+      {categoryItemCards.map((categoryData, index) => {
+        return (
+          <RestaurantCategory
+            key={index}
+            categoryData={categoryData?.card?.card}
+          />
+        );
+      })}
+
+      {/* <ul>
         {itemCards?.map((item) => (
           <li key={item?.card?.info?.id}>
             {item?.card?.info?.name} - ₹
@@ -39,7 +65,7 @@ const RestaurantMenu = () => {
               item?.card?.info?.defaultPrice) / 100}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };

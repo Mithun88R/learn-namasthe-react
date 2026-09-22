@@ -306,8 +306,27 @@ A Hook is just a utility function, or HOOK is like a kind of utility functions.
 
 import {lazy,Suspense} from 'react';
 
+# syntax
+
 const Grocery = lazy(import('./components/Grocery'));
 
 we use to wrap the component using Suspense component
 
 <Suspense fallback={<h1>Loading...</h1>}><Grocery /><Suspense>
+
+# Higher Order Component
+
+= ====== ===== =========
+
+Higher Order Component is a function that take a component and enhances the component and return a new component.
+
+syntax:
+
+const withComponentName = (Component)=>{
+return((props)=>{
+// Enhance the Component
+return <Component {...props}>
+})
+}
+
+const newComponent = withComponentName(Component);

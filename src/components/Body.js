@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withVegRestaurants } from "./RestaurantCard";
 //import restaurantList from "../utils/mocData";
 import Shimmer from "./Shimmer";
 import { RESTAURANT_LIST_API } from "../utils/constants";
@@ -50,7 +50,7 @@ export const Body = () => {
       </h1>
     );
   }
-
+  const VegRestaurantCards = withVegRestaurants(RestaurantCard);
   return restaurantLists.length === 0 ? (
     <Shimmer />
   ) : (
@@ -97,7 +97,11 @@ export const Body = () => {
             key={restaurant.info.id}
             className="restaurant-link"
           >
-            <RestaurantCard restaurants={restaurant} />
+            {restaurant.info.veg ? (
+              <VegRestaurantCards restaurants={restaurant} />
+            ) : (
+              <RestaurantCard restaurants={restaurant} />
+            )}
           </Link>
         ))}
       </div>
