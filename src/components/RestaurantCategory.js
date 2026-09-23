@@ -2,14 +2,13 @@ import ItemList from "./ItemList";
 import { useState } from "react";
 
 const RestaurantCategory = (props) => {
-  const { categoryData } = props;
-  const [showItems, setShowItems] = useState(false);
+  const { categoryData, showItems, setShowIndex } = props;
+  //   const [showItems, setShowItems] = useState(false);
 
   const handleClick = () => {
-    setShowItems(!showItems);
-    console.log("handle clicked");
+    //setShowItems(!showItems);
+    setShowIndex();
   };
-  //console.log("categoryData", categoryData);
   return (
     <div className="w-6/12 p-5 m-1 shadow-2xl  bg-gray-200">
       <div
