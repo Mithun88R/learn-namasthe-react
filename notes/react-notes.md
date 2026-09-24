@@ -231,7 +231,7 @@ for creating Router we import createBrowserRouter from 'react-router-dom'
 
 syntax:
 
-const appRouter = createBrowserRouter([
+const appRouter = createBrowserRouterqa([
 {
 path:'/'
 element:<AppLayout />
@@ -330,3 +330,11 @@ return <Component {...props}>
 }
 
 const newComponent = withComponentName(Component);
+
+# lifting Up State
+
+If we have Parent component and we have multiple child components and we need to manage the state of child components then we lift state to the Parent component so that parent component can handle the child components using the state. we can do my passing the parent state as props to each child component. and if we need to access the state of parent from child we need to send setterstate as call back function from parent to child as props , so that we can access the state of the parent from child.
+
+# Props Drilling
+
+If we need to pass data from parent component to hierarcy child components and we pass data from one child to another child component as props it is called as Props Drilling
